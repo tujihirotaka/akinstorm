@@ -1,0 +1,14 @@
+<h1>akinstorm</h1>
+<h3>新規投稿</h3>
+<%= form_for @post do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :size => 140 %>
+  </div>
+  <div class="field">
+    <%= f.label :about %>
+    <%= f.text_field :about, :size => 140 %>
+  </div>
+  <%= f.submit "Tweetする" %>
+<% end %>
+<%= link_to "一覧に戻る", posts_path %>
