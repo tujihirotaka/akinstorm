@@ -1,0 +1,50 @@
+
+
+<div class="post">
+  <p><%= @post.title %></p>
+  <p><%= @post.about %></p>
+  <p><%= @post.created_at %></p>
+
+  <% if user_signed_in? %>
+  <% if current_user.already_liked?(t) %>
+     <%= link_to post_like_path(id: t.id, post_id: t.id), method: :delete do %>
+        <i class="fas fa-heart"></i><%= t.likes.count %>
+    
+     <% end %>
+  <% else %>
+     <%= link_to post_likes_path(id: t.id, post_id: t.id), method: :post do %>
+
+        <i class="far fa-heart"></i><%= t.likes.count %>
+
+     <% end %>
+  <% end %>
+<% else %>
+  <i class="far fa-heart"></i><%= t.likes.count %>
+<% end %>
+
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div>
+      <%= c.user.email unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@post, @comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+</div>
+
+<%= link_to "Post一覧に戻る", posts_path %>
+<%= link_to "編集する", edit_post_path(@post.id) %>
+

@@ -9,6 +9,12 @@
     <%= f.label :about %>
     <%= f.text_field :about, :size => 140 %>
   </div>
+
+  <div class="field">
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+</div>
+
   <%= f.submit "Tweetする" %>
 <% end %>
 <%= link_to "一覧に戻る", posts_path %>
