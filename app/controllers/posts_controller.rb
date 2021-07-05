@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+    def top 
+    end
     def index
         if params[:search] != nil && params[:search] != ''
             #部分検索かつ複数検索
